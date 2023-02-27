@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RewardAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 336c844ed39015741b55c9690305c35b, type: 3}
+    - {fileID: 2800000, guid: f3aea6439b1e56e4da7beaaa3da996c5, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d003ac617b8b8ce4abfcf2d69eeee01d, type: 3}
+  - {fileID: 21300000, guid: 495c43025aae9b54392ea2b292daec71, type: 3}
+  - {fileID: 21300000, guid: f3aea6439b1e56e4da7beaaa3da996c5, type: 3}
+  - {fileID: 21300000, guid: 65465ca37696c3e4abc6337227a6cf0c, type: 3}
+  - {fileID: 21300000, guid: c677e2f3dd735b24c936f37a06156a0b, type: 3}
+  - {fileID: 21300000, guid: 4ebcee35b200855408cfdfff95c70238, type: 3}
+  - {fileID: 21300000, guid: 7f88273779adcdc4aa641e02df159881, type: 3}
+  - {fileID: 21300000, guid: 1c7ce3082ef684c4c86538bf75ef3e58, type: 3}
+  - {fileID: 21300000, guid: ea2a6c1d5a5b4ed48959d2380b8ee138, type: 3}
+  - {fileID: 21300000, guid: b830f34ef06bcc746afcd6ef5f272119, type: 3}
+  - {fileID: 21300000, guid: 1161a5fffb710f04baa68b8d245a2f76, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_icon_render_cons_medkit_easter
+  - ui_icon_render_cons_healthshot_2_adrenaline
+  - ui_card_icon_death
+  - ui_icon_render_cons_healthshot_2
+  - ui_icon_render_cons_grenade_snowball
+  - ui_icon_render_cons_grenade_m67
+  - UI_icon_cash
+  - ui_icon_render_cons_grenade_electric
+  - UI_icon_gold_pile
+  - ui_icon_render_t_cons_c4
+  - ui_icon_render_t_cons_grenade_emp
+  m_RenderDataMap: {}
+  m_Tag: RewardAtlas
+  m_IsVariant: 0
