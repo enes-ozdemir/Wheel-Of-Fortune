@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _Scripts.SO;
 using UnityEngine;
 
 namespace _Scripts
 {
     public class RewardManager : MonoBehaviour
     {
-        public List<Reward> rewardList;
-        public Reward bomb;
+        [SerializeField] private List<Reward> rewardList;
+        [SerializeField] private  Reward bomb;
         private List<Reward> _zoneRewards = new();
         private const int MaxRewardCount = 8;
 
