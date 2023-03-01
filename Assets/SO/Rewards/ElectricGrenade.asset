@@ -15,3 +15,4 @@ MonoBehaviour:
   itemName: Electric Grenade
   spriteName: ui_icon_render_cons_grenade_electric
   amount: 1
+  rarity: 1

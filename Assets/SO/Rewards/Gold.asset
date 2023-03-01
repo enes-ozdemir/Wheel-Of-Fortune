@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Gold
   spriteName: UI_icon_gold_pile
   amount: 100
-  rarity: 0
+  rarity: 2

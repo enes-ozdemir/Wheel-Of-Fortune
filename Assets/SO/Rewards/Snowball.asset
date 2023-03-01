@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Snowball Grenade
   spriteName: ui_icon_render_cons_grenade_snowball
   amount: 1
-  rarity: 0
+  rarity: 3
