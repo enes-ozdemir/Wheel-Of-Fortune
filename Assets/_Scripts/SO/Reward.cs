@@ -13,6 +13,6 @@ namespace _Scripts.SO
 
     public enum Rarity
     {
-        Common,Rare,Epic,Legendary
+        Common,Rare,Epic,Legendary,Bomb
     }
 }
