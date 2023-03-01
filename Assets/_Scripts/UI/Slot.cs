@@ -11,7 +11,7 @@ namespace _Scripts.UI
         [SerializeField] private Image itemImage;
         [SerializeField] private TextMeshProUGUI itemAmount;
         [SerializeField] private Image backgroundImage;
-         [SerializeField] private SlotData slotData;
+        [SerializeField] private SlotData slotData;
 
         public void InitSlot(Reward reward)
         {

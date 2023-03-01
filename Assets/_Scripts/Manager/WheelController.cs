@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Scripts.Enums;
-using _Scripts.Manager;
 using _Scripts.SO;
 using _Scripts.UI;
 using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Scripts
+namespace _Scripts.Manager
 {
     public class WheelController : MonoBehaviour
     {
@@ -20,12 +19,13 @@ namespace _Scripts
         [SerializeField] private ItemCard itemCard;
         [SerializeField] private Transform wheelTransform;
 
-        public static Action<WheelState> onWheelStateChanged;
-
         private WheelState _wheelState = WheelState.Ready;
         private List<Reward> _rewards;
+        private int _currentLevel;
+        
+        public static Action<WheelState> onWheelStateChanged;
 
-        private void OnEnable()
+        private void OnEnable() 
         {
             spinController.onSpinButtonClicked += SpinWheel;
             onWheelStateChanged += SetWheelState;
@@ -37,14 +37,15 @@ namespace _Scripts
             onWheelStateChanged -= SetWheelState;
         }
 
-        private void Start()
+        public void SetCurrentLevel(int level)
         {
-            SetWheelRewards(1);
+            _currentLevel = level;
+            SetWheelRewards();
         }
 
-        private void SetWheelRewards(int level)
+        private void SetWheelRewards()
         {
-            _rewards = rewardManager.GetRewards(level);
+            _rewards = rewardManager.GetRewards(_currentLevel);
 
             for (int i = 0; i < slotList.Count; i++)
             {

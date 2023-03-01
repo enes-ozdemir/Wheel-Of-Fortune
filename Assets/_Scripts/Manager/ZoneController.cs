@@ -1,19 +1,17 @@
-using System;
 using System.Collections.Generic;
-using _Scripts.Manager;
 using _Scripts.UI;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.Manager
 {
     public class ZoneController : MonoBehaviour
     {
         [SerializeField] private GameObject zonePrefab;
         [SerializeField] private Transform zoneParent;
 
-        [Header("Zone Sprites")] [SerializeField]
-        private Sprite emptyZone;
-
+        [Header("Zone Sprites")]
+        
+        [SerializeField] private Sprite emptyZone;
         [SerializeField] private Sprite safeZone;
         [SerializeField] private Sprite superZone;
 
@@ -28,6 +26,12 @@ namespace _Scripts
 
         public void SetZones(int zoneCount)
         {
+            foreach (var zoneLevelItem in _zoneLevelList)
+            {
+                Destroy(zoneLevelItem);
+            }
+            _zoneLevelList.Clear();
+
             Debug.Log($"Zones are set {zoneCount}");
             for (int i = 1; i < zoneCount+1; i++)
             {

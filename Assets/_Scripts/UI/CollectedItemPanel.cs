@@ -20,13 +20,16 @@ namespace _Scripts.UI
         private void OnEnable()
         {
             GameManager.onLevelCompleted += HideExitButton;
-            GameManager.onSpecialZoneReached += ShowExitButton;
+            GameManager.onSafeZoneReached += ShowExitButton;
+            GameManager.onSuperZoneReached += ShowExitButton;
+            GameManager.onGameRestart += ClearPanel;
         }
 
         private void OnDisable()
         {
             GameManager.onLevelCompleted -= HideExitButton;
-            GameManager.onSpecialZoneReached -= ShowExitButton;
+            GameManager.onSafeZoneReached -= ShowExitButton;
+            GameManager.onGameRestart -= ClearPanel;
         }
 
         private void Awake()
