@@ -29,7 +29,7 @@ namespace _Scripts
         public void SetZones(int zoneCount)
         {
             Debug.Log($"Zones are set {zoneCount}");
-            for (int i = 0; i < zoneCount; i++)
+            for (int i = 1; i < zoneCount+1; i++)
             {
                 AddZone(i);
             }

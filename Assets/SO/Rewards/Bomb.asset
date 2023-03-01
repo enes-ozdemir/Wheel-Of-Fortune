@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Bomb
   spriteName: ui_card_icon_death
   amount: 1
-  rarity: 0
+  rarity: 4

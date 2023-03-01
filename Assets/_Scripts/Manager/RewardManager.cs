@@ -8,7 +8,7 @@ namespace _Scripts
     public class RewardManager : MonoBehaviour
     {
         [SerializeField] private List<Reward> rewardList;
-        [SerializeField] private  Reward bomb;
+        [SerializeField] private Reward bomb;
         private List<Reward> _zoneRewards = new();
         private const int MaxRewardCount = 8;
 
@@ -24,7 +24,6 @@ namespace _Scripts
             {
                 var rarity = GetItemRarityForZone(currentZone);
                 var reward = AddRandomRewardWithRarity(rarity);
-//                Debug.Log($"Item generated  {reward.itemName} : {reward.amount}");
                 _zoneRewards.Add(reward);
             }
 
@@ -57,7 +56,6 @@ namespace _Scripts
                 < 85 => Rarity.Epic,
                 _ => Rarity.Legendary
             };
-         //   Debug.Log($"Item rarity will be {rarity}");
             return rarity;
         }
 

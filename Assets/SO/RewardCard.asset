@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf044a7c9b89484dbe06ed45d140d215, type: 3}
+  m_Name: RewardCard
+  m_EditorClassIdentifier: 
+  commonCard: {fileID: 21300000, guid: 168a4b6e6a2e5bf48b6d7c8200707cf3, type: 3}
+  bombCard: {fileID: 21300000, guid: dc39bf2ed0e116f4db232e0eca3b2eed, type: 3}
+  bronzeFrame: {fileID: 21300000, guid: 9617d685eca3e5845867cb7fd725fa51, type: 3}
+  silverFrame: {fileID: 21300000, guid: df13a3ab29052254d8b9c4da9cc91261, type: 3}
+  goldFrame: {fileID: 21300000, guid: 5ade8aac175af7442b3fdb2c8ddcd5ef, type: 3}

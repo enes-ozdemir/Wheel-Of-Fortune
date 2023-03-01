@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Enums;
 using _Scripts.Manager;
 using _Scripts.SO;
 using DG.Tweening;
@@ -42,7 +43,11 @@ namespace _Scripts.UI
         private void CardClicked()
         {
             CollectedItemPanel.onItemCollected.Invoke(_reward);
-            gameObject.SetActive(false);
+            transform.DOScale(0, 1f).OnComplete(() =>
+            {
+                gameObject.SetActive(false);
+            });
+            WheelController.onWheelStateChanged.Invoke(WheelState.Ready);
         }
 
         private void SetGameOverButtons()

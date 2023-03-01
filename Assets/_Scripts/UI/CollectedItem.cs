@@ -13,23 +13,30 @@ namespace _Scripts.UI
         [SerializeField] private TextMeshProUGUI itemAmountText;
         [SerializeField] private TextMeshProUGUI itemNameText;
 
-        private Reward _totalReward;
+        private int _totalReward;
 
         public void InitCollectedItem(Reward reward)
         {
             gameObject.SetActive(true);
-            transform.DOScale(0, 0f);
-            transform.DOScale(1, 1f).SetEase(Ease.Linear);
+            
+            StartScaleAnim();
+
             itemImage.sprite = AtlasManager.onGetSpriteFromAtlas.Invoke(reward.spriteName);
             itemAmountText.text = reward.amount.ToString();
             itemNameText.text = reward.itemName;
-            _totalReward = reward;
+            _totalReward = reward.amount;
+        }
+
+        private void StartScaleAnim()
+        {
+            transform.DOScale(0, 0f);
+            transform.DOScale(1, 0.5f).SetEase(Ease.Linear);
         }
 
         public void AddItemAmount(int amount)
         {
-            _totalReward.amount += amount;
-            itemAmountText.text = _totalReward.amount.ToString();
+            _totalReward += amount;
+            itemAmountText.text = _totalReward.ToString();
         }
     }
 }
