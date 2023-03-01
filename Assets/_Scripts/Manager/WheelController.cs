@@ -41,6 +41,7 @@ namespace _Scripts.Manager
         {
             _currentLevel = level;
             SetWheelRewards();
+            SetWheelState(WheelState.Ready);
         }
 
         private void SetWheelRewards()

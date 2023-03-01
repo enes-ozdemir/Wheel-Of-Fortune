@@ -35,18 +35,23 @@ namespace _Scripts.Manager
 
         private void InitGame()
         {
+            zoneController.ClearZones();
             zoneController.SetZones(ZoneStartCount);
             zoneController.SetNewBorder(_gameLevel);
             _wheelController.SetCurrentLevel(_gameLevel);
         }
 
-        private void RestartGame() => InitGame();
+        private void RestartGame()
+        {
+            _gameLevel = 1;
+            InitGame();
+        }
 
         private void IncreaseLevel()
         {
             print("Level increased");
-            _gameLevel++;
             zoneController.AddZone(ZoneStartCount + _gameLevel);
+            _gameLevel++;
             zoneController.SetNewBorder(_gameLevel);
             CheckZone();
             _wheelController.SetCurrentLevel(_gameLevel);

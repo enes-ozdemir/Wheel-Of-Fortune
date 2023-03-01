@@ -1,17 +1,19 @@
+using System;
 using System.Collections.Generic;
 using _Scripts.UI;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Scripts.Manager
 {
     public class ZoneController : MonoBehaviour
     {
-        [SerializeField] private GameObject zonePrefab;
         [SerializeField] private Transform zoneParent;
+        [SerializeField] private ZonePool zonePool;
 
-        [Header("Zone Sprites")]
-        
-        [SerializeField] private Sprite emptyZone;
+        [Header("Zone Sprites")] [SerializeField]
+        private Sprite emptyZone;
+
         [SerializeField] private Sprite safeZone;
         [SerializeField] private Sprite superZone;
 
@@ -26,23 +28,28 @@ namespace _Scripts.Manager
 
         public void SetZones(int zoneCount)
         {
-            foreach (var zoneLevelItem in _zoneLevelList)
-            {
-                Destroy(zoneLevelItem);
-            }
-            _zoneLevelList.Clear();
-
             Debug.Log($"Zones are set {zoneCount}");
-            for (int i = 1; i < zoneCount+1; i++)
+            for (int i = 1; i < zoneCount + 1; i++)
             {
                 AddZone(i);
             }
         }
 
+        public void ClearZones()
+        {
+            foreach (var zoneLevelItem in _zoneLevelList)
+            {
+                zonePool.pool.Release(zoneLevelItem.gameObject);
+            }
+
+            _zoneLevelList.Clear();
+        }
+
         public void AddZone(int level)
         {
-            print($"new zone added {level}");
-            var zone = Instantiate(zonePrefab, zoneParent);
+            var zone = zonePool.pool.Get();
+            zone.transform.SetParent(zoneParent);
+            zone.transform.localScale = new Vector3(1, 1, 1);
             var zoneLevelItem = zone.GetComponent<ZoneLevelItem>();
             var currentZoneSprite = GetZoneSprite(level);
             zoneLevelItem.InitLevel(level, currentZoneSprite);
@@ -55,6 +62,5 @@ namespace _Scripts.Manager
             if (zoneNumber % 30 == 0) return superZone;
             return emptyZone;
         }
-
     }
 }

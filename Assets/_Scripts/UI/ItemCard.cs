@@ -71,6 +71,7 @@ namespace _Scripts.UI
 
         private void SetCardWithRarity(Reward reward)
         {
+            cardBg.sprite = rewardCard.commonCard;
             switch (reward.rarity)
             {
                 case Rarity.Rare:
