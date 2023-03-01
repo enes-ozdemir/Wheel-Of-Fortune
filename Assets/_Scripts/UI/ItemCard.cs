@@ -1,6 +1,7 @@
 using System;
 using _Scripts.Manager;
 using _Scripts.SO;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,8 @@ namespace _Scripts.UI
         {
             _reward = reward;
             gameObject.SetActive(true);
+            transform.DOScale(0, 0f);
+            transform.DOScale(1, 1f).SetEase(Ease.OutBounce);
             itemImage.sprite = AtlasManager.onGetSpriteFromAtlas.Invoke(reward.spriteName);
             itemAmount.text = reward.amount.ToString();
             itemName.text = reward.itemName;

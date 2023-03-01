@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6a2ddec2d447a387ec7e29d970eb43, type: 3}
   m_Name: SlotData
   m_EditorClassIdentifier: 
-  commonBg: {fileID: 21300000, guid: 82e850a529598334bad001a90d808668, type: 3}
-  rareBg: {fileID: 21300000, guid: 58e1bc1911c6e5f4384ffacee53fd168, type: 3}
-  epicBg: {fileID: 21300000, guid: 58e1bc1911c6e5f4384ffacee53fd168, type: 3}
-  legendaryBg: {fileID: 21300000, guid: e5b2efc038602124e96d72d9ad7f1e24, type: 3}
+  commonBg: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 0.47058824}
+  rareBg: {r: 0.1579299, g: 0.4357594, b: 0.8584906, a: 0.47058824}
+  epicBg: {r: 0.33565468, g: 0.069686726, b: 0.5471698, a: 0.47058824}
+  legendaryBg: {r: 0.6320754, g: 0.45717576, b: 0.03875936, a: 0.47058824}

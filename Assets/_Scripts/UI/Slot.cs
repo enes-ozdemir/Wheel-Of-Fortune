@@ -27,7 +27,7 @@ namespace _Scripts.UI
                 _ => slotData.commonBg
             };
 
-            backgroundImage.sprite = bgImage;
+            backgroundImage.color = bgImage;
         }
     }
 }

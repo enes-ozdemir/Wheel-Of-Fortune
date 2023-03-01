@@ -14,6 +14,7 @@ namespace _Scripts.UI
         {
             levelText.text = level.ToString();
             backgroundImage.sprite = sprite;
+            borderImage.gameObject.SetActive(false);
         }
 
         public void AddBorderImage() => borderImage.gameObject.SetActive(true);
