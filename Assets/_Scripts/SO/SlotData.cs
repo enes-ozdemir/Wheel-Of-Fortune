@@ -10,5 +10,6 @@ namespace _Scripts.SO
         public Color rareBg;
         public Color epicBg;
         public Color legendaryBg;
+        public Color bombBg;
     }
 }

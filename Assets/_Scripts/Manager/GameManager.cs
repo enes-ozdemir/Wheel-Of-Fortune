@@ -1,15 +1,16 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Scripts.Manager
 {
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private ZoneController zoneController;
-        [SerializeField] private WheelController _wheelController;
+      [SerializeField] private WheelController wheelController;
 
         private int _gameLevel = 1;
-        private const int ZoneStartCount = 5;
+        private const int ZoneStartCount = 7;
 
         public static Action onLevelCompleted;
         public static Action onSafeZoneReached;
@@ -37,8 +38,8 @@ namespace _Scripts.Manager
         {
             zoneController.ClearZones();
             zoneController.SetZones(ZoneStartCount);
-            zoneController.SetNewBorder(_gameLevel);
-            _wheelController.SetCurrentLevel(_gameLevel);
+            zoneController.SetNewBorder();
+            wheelController.SetCurrentLevel(_gameLevel);
         }
 
         private void RestartGame()
@@ -50,11 +51,12 @@ namespace _Scripts.Manager
         private void IncreaseLevel()
         {
             print("Level increased");
+            zoneController.RemoveZone();
             zoneController.AddZone(ZoneStartCount + _gameLevel);
             _gameLevel++;
-            zoneController.SetNewBorder(_gameLevel);
+            zoneController.SetNewBorder();
             CheckZone();
-            _wheelController.SetCurrentLevel(_gameLevel);
+            wheelController.SetCurrentLevel(_gameLevel);
         }
 
         private void CheckZone()

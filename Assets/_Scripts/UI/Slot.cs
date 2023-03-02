@@ -23,6 +23,7 @@ namespace _Scripts.UI
             {
                 Rarity.Rare => slotData.rareBg,
                 Rarity.Epic => slotData.epicBg,
+                Rarity.Bomb => slotData.bombBg,
                 Rarity.Legendary => slotData.legendaryBg,
                 _ => slotData.commonBg
             };

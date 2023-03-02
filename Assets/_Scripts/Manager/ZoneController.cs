@@ -9,7 +9,7 @@ namespace _Scripts.Manager
     public class ZoneController : MonoBehaviour
     {
         [SerializeField] private Transform zoneParent;
-        [SerializeField] private ZonePool zonePool;
+        [SerializeField] private GameObject zonePrefab;
 
         [Header("Zone Sprites")] [SerializeField]
         private Sprite emptyZone;
@@ -19,12 +19,7 @@ namespace _Scripts.Manager
 
         private List<ZoneLevelItem> _zoneLevelList = new();
 
-        public void SetNewBorder(int gameLevel)
-        {
-            var index = gameLevel - 1;
-            _zoneLevelList[index].AddBorderImage();
-            if (index >= 1) _zoneLevelList[index - 1].RemoveBorderImage();
-        }
+        public void SetNewBorder() => _zoneLevelList[0].AddBorderImage();
 
         public void SetZones(int zoneCount)
         {
@@ -39,7 +34,7 @@ namespace _Scripts.Manager
         {
             foreach (var zoneLevelItem in _zoneLevelList)
             {
-                zonePool.pool.Release(zoneLevelItem.gameObject);
+                Destroy(zoneLevelItem.gameObject);
             }
 
             _zoneLevelList.Clear();
@@ -47,8 +42,7 @@ namespace _Scripts.Manager
 
         public void AddZone(int level)
         {
-            var zone = zonePool.pool.Get();
-            zone.transform.SetParent(zoneParent);
+            var zone = Instantiate(zonePrefab,zoneParent);
             zone.transform.localScale = new Vector3(1, 1, 1);
             var zoneLevelItem = zone.GetComponent<ZoneLevelItem>();
             var currentZoneSprite = GetZoneSprite(level);
@@ -61,6 +55,14 @@ namespace _Scripts.Manager
             if (zoneNumber % 5 == 0) return safeZone;
             if (zoneNumber % 30 == 0) return superZone;
             return emptyZone;
+        }
+
+        public void RemoveZone()
+        {
+            var prefab = _zoneLevelList[0];
+            _zoneLevelList.Remove(prefab);
+           Destroy(prefab.gameObject);
+
         }
     }
 }
