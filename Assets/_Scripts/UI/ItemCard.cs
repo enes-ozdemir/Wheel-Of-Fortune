@@ -20,7 +20,10 @@ namespace _Scripts.UI
         [SerializeField] private TextMeshProUGUI itemName;
 
         [SerializeField] private Button claimButton;
-        [FormerlySerializedAs("retryButton")] [SerializeField] private Button reviveButton;
+
+        [FormerlySerializedAs("retryButton")] [SerializeField]
+        private Button reviveButton;
+
         [SerializeField] private Button giveUp;
         [SerializeField] private Button adButton;
         [SerializeField] public RewardCard rewardCard;
@@ -30,13 +33,25 @@ namespace _Scripts.UI
         private void Awake()
         {
             claimButton.onClick.AddListener(CardClicked);
-            reviveButton.onClick.AddListener(RestartGame);
+            reviveButton.onClick.AddListener(ContinueGame);
             giveUp.onClick.AddListener(RestartGame);
             adButton.onClick.AddListener(ShowAd);
         }
 
+        private void ContinueGame()
+        {
+            gameObject.SetActive(false);
+            reviveButton.gameObject.SetActive(false);
+            adButton.gameObject.SetActive(false);
+            giveUp.gameObject.SetActive(false);
+            GameManager.onGameResumed.Invoke();
+        }
+
         private void ShowAd()
         {
+            print("SDK can be added to show ads");
+            gameObject.SetActive(false);
+            ContinueGame();
         }
 
         private void RestartGame()
@@ -53,11 +68,7 @@ namespace _Scripts.UI
             SetAnimations();
             itemImage.sprite = AtlasManager.onGetSpriteFromAtlas.Invoke(reward.spriteName);
             var amount = reward.amount;
-            if (amount > 1) itemAmount.text = reward.amount.ToString();
-            else
-            {
-                itemAmount.text = "";
-            }
+            itemAmount.text = amount > 1 ? reward.amount.ToString() : "";
             itemName.text = reward.itemName;
 
             SetCardWithRarity(reward);
@@ -65,7 +76,7 @@ namespace _Scripts.UI
 
         private void SetAnimations()
         {
-            transform.DOScale(0, 0f);
+            transform.localScale = new Vector3(0, 0, 0);
             transform.DOScale(1, 1f).SetEase(Ease.OutBounce);
         }
 
@@ -114,7 +125,7 @@ namespace _Scripts.UI
             adButton.gameObject.SetActive(false);
             giveUp.gameObject.SetActive(false);
         }
-        
+
         private void OnDestroy()
         {
             claimButton.onClick.RemoveAllListeners();
@@ -122,6 +133,5 @@ namespace _Scripts.UI
             giveUp.onClick.RemoveAllListeners();
             adButton.onClick.RemoveAllListeners();
         }
-        
     }
 }

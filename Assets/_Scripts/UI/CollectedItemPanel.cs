@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using _Scripts.Manager;
 using _Scripts.SO;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace _Scripts.UI
@@ -12,8 +11,9 @@ namespace _Scripts.UI
     {
         private Dictionary<string, CollectedItem> _collectedItemDict = new();
         [SerializeField] private GameObject collectedItemPrefab;
-        [SerializeField] private List<GameObject> collectedItems = new();
+        private List<CollectedItem> collectedItems = new();
         [SerializeField] private Button exitButton;
+        [SerializeField] private RewardPanel rewardPanel;
 
         public static Action<Reward> onItemCollected;
 
@@ -45,8 +45,16 @@ namespace _Scripts.UI
         private void CollectRewards()
         {
             print("Rewards are collected");
-            //todo game'i sıfırla
-            //bir cıkıs ekranı yap vs.
+            if (collectedItems.Count > 0)
+            {
+                foreach (var item in collectedItems)
+                {
+                    print(item.name);
+                }
+            }
+            
+            rewardPanel.SetRewardPanel(collectedItems);
+            GameManager.onGameRestart.Invoke();
         }
 
         private void CollectItem(Reward reward)
@@ -64,22 +72,22 @@ namespace _Scripts.UI
 
         private void NewItemAddedToPanel(Reward reward)
         {
-            //todo change this
             var newItem = Instantiate(collectedItemPrefab, transform);
-            collectedItems.Add(newItem);
+            var item = newItem.GetComponent<CollectedItem>();
+            collectedItems.Add(item);
             var collectedItem = newItem.GetComponent<CollectedItem>();
             collectedItem.InitCollectedItem(reward);
             _collectedItemDict.Add(reward.itemName, collectedItem);
-
         }
 
-        public void ClearPanel()
+        private void ClearPanel()
         {
             foreach (var collectedItem in collectedItems)
             {
-                Destroy(collectedItem);
+                Destroy(collectedItem.gameObject);
             }
 
+            _collectedItemDict.Clear();
             collectedItems.Clear();
         }
     }

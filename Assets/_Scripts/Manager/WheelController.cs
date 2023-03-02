@@ -42,6 +42,12 @@ namespace _Scripts.Manager
             _currentLevel = level;
             SetWheelRewards();
             SetWheelState(WheelState.Ready);
+            SetWheelRotation();
+        }
+
+        private void SetWheelRotation()
+        {
+            transform.localRotation = Quaternion.identity;
         }
 
         private void SetWheelRewards()

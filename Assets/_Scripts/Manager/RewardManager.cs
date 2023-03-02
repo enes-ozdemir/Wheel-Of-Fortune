@@ -3,7 +3,7 @@ using System.Linq;
 using _Scripts.SO;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.Manager
 {
     public class RewardManager : MonoBehaviour
     {
@@ -18,7 +18,6 @@ namespace _Scripts
 
             _zoneRewards.Clear();
             if (currentZone == Zone.NormalZone) _zoneRewards.Add(bomb);
-
 
             for (int i = _zoneRewards.Count; i < MaxRewardCount; i++)
             {

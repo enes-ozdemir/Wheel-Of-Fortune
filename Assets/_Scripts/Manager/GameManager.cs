@@ -16,18 +16,23 @@ namespace _Scripts.Manager
         public static Action onSafeZoneReached;
         public static Action onSuperZoneReached;
         public static Action onGameRestart;
+        public static Action onGameResumed;
 
         private void OnEnable()
         {
             onLevelCompleted += IncreaseLevel;
             onGameRestart += RestartGame;
+            onGameResumed += ResumeGame;
         }
 
         private void OnDisable()
         {
             onLevelCompleted -= IncreaseLevel;
             onGameRestart -= RestartGame;
+            onGameResumed -= ResumeGame;
         }
+
+        private void ResumeGame() => wheelController.SetCurrentLevel(_gameLevel);
 
         private void Start()
         {
