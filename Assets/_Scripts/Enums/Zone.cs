@@ -1,4 +1,4 @@
-namespace _Scripts
+namespace _Scripts.Enums
 {
     public enum Zone
     {

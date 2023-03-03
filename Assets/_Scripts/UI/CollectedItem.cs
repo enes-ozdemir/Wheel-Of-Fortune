@@ -18,7 +18,6 @@ namespace _Scripts.UI
         public void InitCollectedItem(Reward reward)
         {
             gameObject.SetActive(true);
-            
             StartScaleAnim();
 
             itemImage.sprite = AtlasManager.onGetSpriteFromAtlas.Invoke(reward.spriteName);

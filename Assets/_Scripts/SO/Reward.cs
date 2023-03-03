@@ -1,3 +1,4 @@
+using _Scripts.Enums;
 using UnityEngine;
 
 namespace _Scripts.SO
@@ -9,10 +10,5 @@ namespace _Scripts.SO
         public string spriteName;
         public int amount = 1;
         public Rarity rarity;
-    }
-
-    public enum Rarity
-    {
-        Common,Rare,Epic,Legendary,Bomb
     }
 }

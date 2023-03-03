@@ -1,6 +1,6 @@
 ﻿using System;
+using _Scripts.Enums;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Scripts.Manager
 {
@@ -31,13 +31,11 @@ namespace _Scripts.Manager
             onGameResumed -= ResumeGame;
         }
 
-        private void ResumeGame() => wheelController.SetCurrentLevel(_gameLevel);
-
         private void Start()
         {
             InitGame();
         }
-
+        
         private void InitGame()
         {
             zoneController.ClearZones();
@@ -51,20 +49,22 @@ namespace _Scripts.Manager
             _gameLevel = 1;
             InitGame();
         }
+        
+        private void ResumeGame() => wheelController.SetCurrentLevel(_gameLevel);
 
         private void IncreaseLevel()
         {
             print("Level increased");
-            zoneController.RemoveZone();
+            zoneController.RemoveFirstZone();
             zoneController.AddZone(ZoneStartCount + _gameLevel);
             _gameLevel++;
             zoneController.SetNewBorder();
-            CheckZone();
+            SetReachedZone();
             wheelController.SetCurrentLevel(_gameLevel);
             onZoneReached.Invoke(Zone.NormalZone);
         }
 
-        private void CheckZone()
+        private void SetReachedZone()
         {
             if (_gameLevel % 30 == 0)
             {

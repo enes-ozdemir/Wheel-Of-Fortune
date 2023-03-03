@@ -1,31 +1,28 @@
-using System;
 using _Scripts.Enums;
 using _Scripts.Manager;
 using _Scripts.SO;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Scripts.UI
 {
     public class ItemCard : MonoBehaviour
     {
+        [Header("Images")]
         [SerializeField] private Image itemImage;
         [SerializeField] public Image cardBg;
         [SerializeField] public Image cardFrame;
+        [Header("Texts")]
         [SerializeField] private TextMeshProUGUI itemAmount;
         [SerializeField] private TextMeshProUGUI itemName;
-
+        [Header("Buttons")]
         [SerializeField] private Button claimButton;
-
-        [FormerlySerializedAs("retryButton")] [SerializeField]
-        private Button reviveButton;
-
+        [SerializeField] private Button reviveButton;
         [SerializeField] private Button giveUp;
         [SerializeField] private Button adButton;
+        [Header("RewardCard")]
         [SerializeField] public RewardCard rewardCard;
 
         private Reward _reward;
@@ -49,7 +46,7 @@ namespace _Scripts.UI
 
         private void ShowAd()
         {
-            print("SDK can be added to show ads");
+            print("Ads SDK can be added to show rewarded ads");
             gameObject.SetActive(false);
             ContinueGame();
         }
@@ -85,6 +82,9 @@ namespace _Scripts.UI
             cardBg.sprite = rewardCard.commonCard;
             switch (reward.rarity)
             {
+                case Rarity.Common:
+                    cardFrame.sprite = rewardCard.bronzeFrame;
+                    break;
                 case Rarity.Rare:
                     cardFrame.sprite = rewardCard.silverFrame;
                     break;

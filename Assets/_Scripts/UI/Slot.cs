@@ -1,4 +1,5 @@
-﻿using _Scripts.Manager;
+﻿using _Scripts.Enums;
+using _Scripts.Manager;
 using _Scripts.SO;
 using TMPro;
 using UnityEngine;

@@ -6,6 +6,7 @@ using _Scripts.SO;
 using _Scripts.UI;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace _Scripts.Manager
@@ -13,27 +14,28 @@ namespace _Scripts.Manager
     public class WheelController : MonoBehaviour
     {
         [SerializeField] private float rotationDuration;
-        [SerializeField] private SpinController spinController;
         [SerializeField] private RewardManager rewardManager;
-        [SerializeField] private List<Slot> slotList;
         [SerializeField] private ItemCard itemCard;
+        [Space]
+        [SerializeField] private Button spinButton;
         [SerializeField] private Transform wheelTransform;
+        [SerializeField] private List<Slot> slotList;
 
         private WheelState _wheelState = WheelState.Ready;
         private List<Reward> _rewards;
         private int _currentLevel;
-        
+
         public static Action<WheelState> onWheelStateChanged;
 
-        private void OnEnable() 
+        private void OnEnable()
         {
-            spinController.onSpinButtonClicked += SpinWheel;
+            spinButton.onClick.AddListener(SpinWheel);
             onWheelStateChanged += SetWheelState;
         }
 
         private void OnDisable()
         {
-            spinController.onSpinButtonClicked -= SpinWheel;
+            spinButton.onClick.RemoveListener(SpinWheel);
             onWheelStateChanged -= SetWheelState;
         }
 
@@ -66,10 +68,7 @@ namespace _Scripts.Manager
         {
             SetWheelState(WheelState.Busy);
             var randomItemIndex = GetRandomWheelItem();
-            var angle = -(45f * randomItemIndex);
-            var extraSpins = Random.Range(3, 6);
-            var totalAngle = (360f * extraSpins) - angle;
-            var targetAngleVector = Vector3.forward * totalAngle;
+            var targetAngleVector = SetWheelAngle(randomItemIndex);
 
             wheelTransform.transform.DORotate(targetAngleVector, rotationDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.OutCirc).OnComplete(() =>
@@ -79,6 +78,15 @@ namespace _Scripts.Manager
                 });
 
             yield return new WaitForSeconds(rotationDuration);
+        }
+
+        private Vector3 SetWheelAngle(int randomItemIndex)
+        {
+            var angle = -(45f * randomItemIndex);
+            var extraSpins = Random.Range(3, 6);
+            var totalAngle = 360f * extraSpins - angle;
+            var targetAngleVector = Vector3.forward * totalAngle;
+            return targetAngleVector;
         }
 
         private int GetRandomWheelItem()

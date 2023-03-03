@@ -18,6 +18,5 @@ namespace _Scripts.UI
         }
 
         public void AddBorderImage() => borderImage.gameObject.SetActive(true);
-        public void RemoveBorderImage() => borderImage.gameObject.SetActive(false);
     }
 }

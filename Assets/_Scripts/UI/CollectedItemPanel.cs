@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Scripts.Enums;
 using _Scripts.Manager;
 using _Scripts.SO;
 using UnityEngine;
@@ -10,8 +11,8 @@ namespace _Scripts.UI
     public class CollectedItemPanel : MonoBehaviour
     {
         private Dictionary<string, CollectedItem> _collectedItemDict = new();
+        private List<CollectedItem> _collectedItems = new();
         [SerializeField] private GameObject collectedItemPrefab;
-        private List<CollectedItem> collectedItems = new();
         [SerializeField] private Button exitButton;
         [SerializeField] private RewardPanel rewardPanel;
 
@@ -37,26 +38,18 @@ namespace _Scripts.UI
             exitButton.gameObject.SetActive(false);
         }
 
-        private void ShowExitButton(Zone zoneType)
-        {
-            if (zoneType == Zone.NormalZone) return;
-            exitButton.gameObject.SetActive(true);
-        }
-
-        private void HideExitButton() => exitButton.gameObject.SetActive(false);
-
         private void CollectRewards()
         {
-            print("Rewards are collected");
-            if (collectedItems.Count > 0)
+            print("Rewards collected");
+            if (_collectedItems.Count > 0)
             {
-                foreach (var item in collectedItems)
+                foreach (var item in _collectedItems)
                 {
                     print(item.name);
                 }
             }
 
-            rewardPanel.SetRewardPanel(collectedItems);
+            rewardPanel.SetRewardPanel(_collectedItems);
             GameManager.onGameRestart.Invoke();
         }
 
@@ -77,22 +70,29 @@ namespace _Scripts.UI
         private void NewItemAddedToPanel(Reward reward)
         {
             var newItem = Instantiate(collectedItemPrefab, transform);
-            var item = newItem.GetComponent<CollectedItem>();
-            collectedItems.Add(item);
             var collectedItem = newItem.GetComponent<CollectedItem>();
+            _collectedItems.Add(collectedItem);
             collectedItem.InitCollectedItem(reward);
             _collectedItemDict.Add(reward.itemName, collectedItem);
         }
 
         private void ClearPanel()
         {
-            foreach (var collectedItem in collectedItems)
+            foreach (var collectedItem in _collectedItems)
             {
                 Destroy(collectedItem.gameObject);
             }
 
             _collectedItemDict.Clear();
-            collectedItems.Clear();
+            _collectedItems.Clear();
         }
+
+        private void ShowExitButton(Zone zoneType)
+        {
+            if (zoneType == Zone.NormalZone) return;
+            exitButton.gameObject.SetActive(true);
+        }
+
+        private void HideExitButton() => exitButton.gameObject.SetActive(false);
     }
 }

@@ -41,7 +41,7 @@ namespace _Scripts.Manager
 
         public void AddZone(int level)
         {
-            var zone = Instantiate(zonePrefab,zoneParent);
+            var zone = Instantiate(zonePrefab, zoneParent);
             zone.transform.localScale = new Vector3(1, 1, 1);
             var zoneLevelItem = zone.GetComponent<ZoneLevelItem>();
             var currentZoneSprite = GetZoneSprite(level);
@@ -56,12 +56,11 @@ namespace _Scripts.Manager
             return emptyZone;
         }
 
-        public void RemoveZone()
+        public void RemoveFirstZone()
         {
             var prefab = _zoneLevelList[0];
             _zoneLevelList.Remove(prefab);
-           Destroy(prefab.gameObject);
-
+            Destroy(prefab.gameObject);
         }
     }
 }

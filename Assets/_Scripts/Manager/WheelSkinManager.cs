@@ -1,4 +1,4 @@
-﻿using System;
+﻿using _Scripts.Enums;
 using _Scripts.SO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,15 +11,9 @@ namespace _Scripts.Manager
         [SerializeField] public Image indicatorImage;
         [SerializeField] private Wheel wheel;
 
-        private void OnEnable()
-        {
-            GameManager.onZoneReached += SetSkin;
-        }
+        private void OnEnable() => GameManager.onZoneReached += SetSkin;
 
-        private void OnDisable()
-        {
-            GameManager.onZoneReached -= SetSkin;
-        }
+        private void OnDisable() => GameManager.onZoneReached -= SetSkin;
 
         private void SetSkin(Zone zoneType)
         {
@@ -36,7 +30,6 @@ namespace _Scripts.Manager
                     break;
             }
         }
-
 
         private void SetGoldSkin()
         {

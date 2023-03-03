@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _Scripts.Enums;
 using _Scripts.SO;
 using UnityEngine;
 
@@ -9,8 +10,9 @@ namespace _Scripts.Manager
     {
         [SerializeField] private List<Reward> rewardList;
         [SerializeField] private Reward bomb;
+
         private List<Reward> _zoneRewards = new();
-        private const int MaxRewardCount = 8;
+        private const int WheelSliceCount = 8;
 
         public List<Reward> GetRewards(int currentLevel)
         {
@@ -19,7 +21,7 @@ namespace _Scripts.Manager
             _zoneRewards.Clear();
             if (currentZone == Zone.NormalZone) _zoneRewards.Add(bomb);
 
-            for (int i = _zoneRewards.Count; i < MaxRewardCount; i++)
+            for (int i = _zoneRewards.Count; i < WheelSliceCount; i++)
             {
                 var rarity = GetItemRarityForZone(currentZone);
                 var reward = AddRandomRewardWithRarity(rarity);
