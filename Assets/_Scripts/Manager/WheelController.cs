@@ -42,12 +42,6 @@ namespace _Scripts.Manager
             _currentLevel = level;
             SetWheelRewards();
             SetWheelState(WheelState.Ready);
-           // SetWheelRotation();
-        }
-
-        private void SetWheelRotation()
-        {
-            transform.localRotation = Quaternion.identity;
         }
 
         private void SetWheelRewards()
@@ -72,9 +66,9 @@ namespace _Scripts.Manager
         {
             SetWheelState(WheelState.Busy);
             var randomItemIndex = GetRandomWheelItem();
-            float angle = -(45f * randomItemIndex);
-            int extraSpins = Random.Range(1, 6);
-            float totalAngle = (360f * extraSpins) - angle;
+            var angle = -(45f * randomItemIndex);
+            var extraSpins = Random.Range(3, 6);
+            var totalAngle = (360f * extraSpins) - angle;
             var targetAngleVector = Vector3.forward * totalAngle;
 
             wheelTransform.transform.DORotate(targetAngleVector, rotationDuration, RotateMode.FastBeyond360)

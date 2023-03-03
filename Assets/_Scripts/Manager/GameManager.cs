@@ -7,14 +7,13 @@ namespace _Scripts.Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private ZoneController zoneController;
-      [SerializeField] private WheelController wheelController;
+        [SerializeField] private WheelController wheelController;
 
         private int _gameLevel = 1;
         private const int ZoneStartCount = 7;
 
         public static Action onLevelCompleted;
-        public static Action onSafeZoneReached;
-        public static Action onSuperZoneReached;
+        public static Action<Zone> onZoneReached;
         public static Action onGameRestart;
         public static Action onGameResumed;
 
@@ -62,17 +61,22 @@ namespace _Scripts.Manager
             zoneController.SetNewBorder();
             CheckZone();
             wheelController.SetCurrentLevel(_gameLevel);
+            onZoneReached.Invoke(Zone.NormalZone);
         }
 
         private void CheckZone()
         {
             if (_gameLevel % 30 == 0)
             {
-                onSuperZoneReached.Invoke();
+                onZoneReached.Invoke(Zone.SuperZone);
             }
             else if (_gameLevel % 5 == 0)
             {
-                onSafeZoneReached.Invoke();
+                onZoneReached.Invoke(Zone.SafeZone);
+            }
+            else
+            {
+                onZoneReached.Invoke(Zone.NormalZone);
             }
         }
     }

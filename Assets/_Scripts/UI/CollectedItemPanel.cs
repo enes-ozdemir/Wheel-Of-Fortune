@@ -20,15 +20,13 @@ namespace _Scripts.UI
         private void OnEnable()
         {
             GameManager.onLevelCompleted += HideExitButton;
-            GameManager.onSafeZoneReached += ShowExitButton;
-            GameManager.onSuperZoneReached += ShowExitButton;
+            GameManager.onZoneReached += ShowExitButton;
             GameManager.onGameRestart += ClearPanel;
         }
 
         private void OnDisable()
         {
             GameManager.onLevelCompleted -= HideExitButton;
-            GameManager.onSafeZoneReached -= ShowExitButton;
             GameManager.onGameRestart -= ClearPanel;
         }
 
@@ -39,7 +37,12 @@ namespace _Scripts.UI
             exitButton.gameObject.SetActive(false);
         }
 
-        private void ShowExitButton() => exitButton.gameObject.SetActive(true);
+        private void ShowExitButton(Zone zoneType)
+        {
+            if (zoneType == Zone.NormalZone) return;
+            exitButton.gameObject.SetActive(true);
+        }
+
         private void HideExitButton() => exitButton.gameObject.SetActive(false);
 
         private void CollectRewards()
@@ -52,7 +55,7 @@ namespace _Scripts.UI
                     print(item.name);
                 }
             }
-            
+
             rewardPanel.SetRewardPanel(collectedItems);
             GameManager.onGameRestart.Invoke();
         }
@@ -67,6 +70,7 @@ namespace _Scripts.UI
             {
                 NewItemAddedToPanel(reward);
             }
+
             GameManager.onLevelCompleted.Invoke();
         }
 

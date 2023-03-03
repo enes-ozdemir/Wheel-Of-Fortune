@@ -10,6 +10,7 @@ namespace _Scripts.UI
     {
         private List<CollectedItem> _collectedItemList = new();
         [SerializeField] private Button claimButton;
+        [SerializeField] private GameObject _collectedItemPrefab;
 
         private void OnEnable() => claimButton.onClick.AddListener(Claim);
 
@@ -18,7 +19,7 @@ namespace _Scripts.UI
         private void Claim()
         {
             GameManager.onGameRestart.Invoke();
-            gameObject.SetActive(false);
+            transform.parent.gameObject.SetActive(false);
         }
 
         public void SetRewardPanel(List<CollectedItem> collectedItemList)
@@ -29,9 +30,11 @@ namespace _Scripts.UI
             foreach (var collectedItem in collectedItemList)
             {
                 print("Reward panel inst");
-                var prefab = Instantiate(collectedItem.gameObject, transform);
-                _collectedItemList.Add(prefab.GetComponent<CollectedItem>());
-            } 
+                var prefab = Instantiate(_collectedItemPrefab, transform);
+                var collected = prefab.GetComponent<CollectedItem>();
+                collected.InitCollectedItem(collectedItem);
+                _collectedItemList.Add(collected);
+            }
         }
 
         private void ClearList()

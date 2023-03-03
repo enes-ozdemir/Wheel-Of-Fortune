@@ -46,7 +46,7 @@ namespace _Scripts.Manager
         {
             int rarityRoll = Random.Range(0, 100);
             if (currentZone == Zone.SafeZone) rarityRoll += 50;
-            if (currentZone == Zone.SafeZone) rarityRoll += 70;
+            if (currentZone == Zone.SuperZone) rarityRoll += 70;
 
             var rarity = rarityRoll switch
             {

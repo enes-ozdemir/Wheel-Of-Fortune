@@ -27,6 +27,13 @@ namespace _Scripts.UI
             _totalReward = reward.amount;
         }
 
+        public void InitCollectedItem(CollectedItem collectedItem)
+        {
+            itemImage.sprite = collectedItem.itemImage.sprite;
+            itemAmountText.text = collectedItem.itemAmountText.text;
+            itemNameText.text = collectedItem.itemNameText.text;
+        }
+
         private void StartScaleAnim()
         {
             transform.DOScale(0, 0f);

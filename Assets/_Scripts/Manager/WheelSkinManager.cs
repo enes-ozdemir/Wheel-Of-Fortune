@@ -1,4 +1,5 @@
-﻿using _Scripts.SO;
+﻿using System;
+using _Scripts.SO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,17 +13,30 @@ namespace _Scripts.Manager
 
         private void OnEnable()
         {
-            GameManager.onLevelCompleted += SetBronzeSkin;
-            GameManager.onSafeZoneReached += SetSilverSkin;
-            GameManager.onSuperZoneReached += SetGoldSkin;
+            GameManager.onZoneReached += SetSkin;
         }
 
         private void OnDisable()
         {
-            GameManager.onLevelCompleted -= SetBronzeSkin;
-            GameManager.onSafeZoneReached -= SetSilverSkin;
-            GameManager.onSuperZoneReached -= SetGoldSkin;
+            GameManager.onZoneReached -= SetSkin;
         }
+
+        private void SetSkin(Zone zoneType)
+        {
+            switch (zoneType)
+            {
+                case Zone.NormalZone:
+                    SetBronzeSkin();
+                    break;
+                case Zone.SafeZone:
+                    SetSilverSkin();
+                    break;
+                case Zone.SuperZone:
+                    SetGoldSkin();
+                    break;
+            }
+        }
+
 
         private void SetGoldSkin()
         {
