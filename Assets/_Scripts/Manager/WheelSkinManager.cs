@@ -20,12 +20,15 @@ namespace _Scripts.Manager
             switch (zoneType)
             {
                 case Zone.NormalZone:
+                    print("NormalZone reached");
                     SetBronzeSkin();
                     break;
                 case Zone.SafeZone:
+                    print("SafeZone reached");
                     SetSilverSkin();
                     break;
                 case Zone.SuperZone:
+                    print("SuperZone reached");
                     SetGoldSkin();
                     break;
             }

@@ -35,7 +35,7 @@ namespace _Scripts.Manager
         {
             InitGame();
         }
-        
+
         private void InitGame()
         {
             zoneController.ClearZones();
@@ -47,9 +47,10 @@ namespace _Scripts.Manager
         private void RestartGame()
         {
             _gameLevel = 1;
+            onZoneReached.Invoke(Zone.NormalZone);
             InitGame();
         }
-        
+
         private void ResumeGame() => wheelController.SetCurrentLevel(_gameLevel);
 
         private void IncreaseLevel()
@@ -61,21 +62,23 @@ namespace _Scripts.Manager
             zoneController.SetNewBorder();
             SetReachedZone();
             wheelController.SetCurrentLevel(_gameLevel);
-            onZoneReached.Invoke(Zone.NormalZone);
         }
 
         private void SetReachedZone()
         {
             if (_gameLevel % 30 == 0)
             {
+                print("SuperZone reached");
                 onZoneReached.Invoke(Zone.SuperZone);
             }
             else if (_gameLevel % 5 == 0)
             {
+                print("SafeZone reached");
                 onZoneReached.Invoke(Zone.SafeZone);
             }
             else
             {
+                print("NormalZone reached");
                 onZoneReached.Invoke(Zone.NormalZone);
             }
         }
