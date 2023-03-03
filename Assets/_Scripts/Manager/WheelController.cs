@@ -42,7 +42,7 @@ namespace _Scripts.Manager
             _currentLevel = level;
             SetWheelRewards();
             SetWheelState(WheelState.Ready);
-            SetWheelRotation();
+           // SetWheelRotation();
         }
 
         private void SetWheelRotation()
@@ -73,9 +73,8 @@ namespace _Scripts.Manager
             SetWheelState(WheelState.Busy);
             var randomItemIndex = GetRandomWheelItem();
             float angle = -(45f * randomItemIndex);
-            int extraSpins = Random.Range(1, 4);
-            int spinCount = 2 + extraSpins;
-            float totalAngle = 360f * spinCount - angle;
+            int extraSpins = Random.Range(1, 6);
+            float totalAngle = (360f * extraSpins) - angle;
             var targetAngleVector = Vector3.forward * totalAngle;
 
             wheelTransform.transform.DORotate(targetAngleVector, rotationDuration, RotateMode.FastBeyond360)
