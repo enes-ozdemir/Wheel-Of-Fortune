@@ -40,12 +40,12 @@ namespace _Scripts.UI
 
         private void CollectRewards()
         {
-            print("Rewards collected");
+            Debug.Log("Rewards collected");
             if (_collectedItems.Count > 0)
             {
                 foreach (var item in _collectedItems)
                 {
-                    print(item.name);
+                    Debug.Log(item.name);
                 }
             }
 

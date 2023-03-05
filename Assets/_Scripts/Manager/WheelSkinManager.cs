@@ -7,8 +7,8 @@ namespace _Scripts.Manager
 {
     public class WheelSkinManager : MonoBehaviour
     {
-        [SerializeField] public Image wheelImage;
-        [SerializeField] public Image indicatorImage;
+        [SerializeField] private Image wheelImage;
+        [SerializeField] private Image indicatorImage;
         [SerializeField] private Wheel wheel;
 
         private void OnEnable() => GameManager.onZoneReached += SetSkin;
@@ -20,15 +20,15 @@ namespace _Scripts.Manager
             switch (zoneType)
             {
                 case Zone.NormalZone:
-                    print("NormalZone reached");
+                    Debug.Log("NormalZone reached");
                     SetBronzeSkin();
                     break;
                 case Zone.SafeZone:
-                    print("SafeZone reached");
+                    Debug.Log("SafeZone reached");
                     SetSilverSkin();
                     break;
                 case Zone.SuperZone:
-                    print("SuperZone reached");
+                    Debug.Log("SuperZone reached");
                     SetGoldSkin();
                     break;
             }

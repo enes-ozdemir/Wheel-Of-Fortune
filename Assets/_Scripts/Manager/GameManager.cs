@@ -55,7 +55,7 @@ namespace _Scripts.Manager
 
         private void IncreaseLevel()
         {
-            print("Level increased");
+            Debug.Log("Level increased");
             zoneController.RemoveFirstZone();
             zoneController.AddZone(ZoneStartCount + _gameLevel);
             _gameLevel++;
@@ -68,17 +68,17 @@ namespace _Scripts.Manager
         {
             if (_gameLevel % 30 == 0)
             {
-                print("SuperZone reached");
+                Debug.Log("SuperZone reached");
                 onZoneReached.Invoke(Zone.SuperZone);
             }
             else if (_gameLevel % 5 == 0)
             {
-                print("SafeZone reached");
+                Debug.Log("SafeZone reached");
                 onZoneReached.Invoke(Zone.SafeZone);
             }
             else
             {
-                print("NormalZone reached");
+                Debug.Log("NormalZone reached");
                 onZoneReached.Invoke(Zone.NormalZone);
             }
         }

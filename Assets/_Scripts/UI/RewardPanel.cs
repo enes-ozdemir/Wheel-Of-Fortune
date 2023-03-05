@@ -22,7 +22,7 @@ namespace _Scripts.UI
 
         public void SetRewardPanel(List<CollectedItem> collectedItemList)
         {
-            print("Reward panel open");
+            Debug.Log("Reward panel open");
             transform.parent.gameObject.SetActive(true);
             if (collectedItemList.Count > 0) ClearList();
             foreach (var collectedItem in collectedItemList)

@@ -46,14 +46,14 @@ namespace _Scripts.UI
 
         private void ShowAd()
         {
-            print("Ads SDK can be added to show rewarded ads");
+            Debug.Log("Ads SDK can be added to show rewarded ads");
             gameObject.SetActive(false);
             ContinueGame();
         }
 
         private void RestartGame()
         {
-            print("Game restart");
+            Debug.Log("Game restart");
             GameManager.onGameRestart.Invoke();
             gameObject.SetActive(false);
         }

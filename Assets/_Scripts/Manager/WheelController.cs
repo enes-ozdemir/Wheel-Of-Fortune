@@ -73,7 +73,7 @@ namespace _Scripts.Manager
             wheelTransform.transform.DORotate(targetAngleVector, rotationDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.OutCirc).OnComplete(() =>
                 {
-                    print("Rotate completed");
+                    Debug.Log("Rotate completed");
                     itemCard.InitCard(_rewards[randomItemIndex]);
                 });
 
